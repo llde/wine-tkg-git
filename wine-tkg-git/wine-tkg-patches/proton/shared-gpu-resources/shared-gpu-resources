@@ -6,21 +6,24 @@
 			 msg2 "This version of the shared gpu patchset doesn't work with fshack"
 		 fi
 		_patchname='sharedgpures-driver.patch' && _patchmsg="Applied shared resources driver patchset" && nonuser_patcher
-	#	if git merge-base --is-ancestor c65bfc062bfe1e2256a814ec7a0286214da04b0e HEAD; then
-	#		_patchname='sharedgpures-textures.patch' && _patchmsg="Applied shared texture resources support patchset" && nonuser_patcher
-	#		if git merge-base --is-ancestor 83199991ed9df2e3869e60d98b7ead78019caaf2 HEAD; then
-	#			if git merge-base --is-ancestor 36f5da51d0f6205ad8f03010e7fc9fe9eaf4e8d2 HEAD; then
-	#				_patchname='sharedgpures-fences.patch' && _patchmsg="Applied shared fences support patchset" && nonuser_patcher
-	#			else
-	#				_patchname='sharedgpures-fences-36f5da51.patch' && _patchmsg="Applied shared fences support patchset" && nonuser_patcher
-	#			fi
-	#		else
-	#			_patchname='sharedgpures-fences-8319999.patch' && _patchmsg="Applied shared fences support patchset" && nonuser_patcher
-	#		fi
-	#	else #f3bf30688cb25b6ae4fac4cdcb18469042fbbf32
-	#		_patchname='sharedgpures-textures-c65bfc0.patch' && _patchmsg="Applied shared texture resources support patchset" && nonuser_patcher
-	#		_patchname='sharedgpures-fences-c65bfc0.patch' && _patchmsg="Applied shared fences support patchset" && nonuser_patcher
-	#	fi
+		if git merge-base --is-ancestor e32711dd2fee94cba3ccd145397fd1904e6a397f HEAD; then
+			_patchname='sharedgpures-textures.patch' && _patchmsg="Applied shared texture resources support patchset" && nonuser_patcher
+			_patchname='sharedgpures-fences.patch' && _patchmsg="Applied shared fences support patchset" && nonuser_patcher
+		elif git merge-base --is-ancestor c65bfc062bfe1e2256a814ec7a0286214da04b0e HEAD; then
+			_patchname='sharedgpures-textures-e32711dd.patch' && _patchmsg="Applied shared texture resources support patchset" && nonuser_patcher
+			if git merge-base --is-ancestor 83199991ed9df2e3869e60d98b7ead78019caaf2 HEAD; then
+				if git merge-base --is-ancestor 36f5da51d0f6205ad8f03010e7fc9fe9eaf4e8d2 HEAD; then
+					_patchname='sharedgpures-fences-e32711dd.patch' && _patchmsg="Applied shared fences support patchset" && nonuser_patcher
+				else
+					_patchname='sharedgpures-fences-36f5da51.patch' && _patchmsg="Applied shared fences support patchset" && nonuser_patcher
+				fi
+			else
+				_patchname='sharedgpures-fences-8319999.patch' && _patchmsg="Applied shared fences support patchset" && nonuser_patcher
+			fi
+		else #f3bf30688cb25b6ae4fac4cdcb18469042fbbf32
+			_patchname='sharedgpures-textures-c65bfc0.patch' && _patchmsg="Applied shared texture resources support patchset" && nonuser_patcher
+			_patchname='sharedgpures-fences-c65bfc0.patch' && _patchmsg="Applied shared fences support patchset" && nonuser_patcher
+		fi
 		if git merge-base --is-ancestor 6c11a4af5885c6485a908ea5c547e072fe71aa23 HEAD; then #this doesn't have a separate staging patchset
 			_patchname='sharedgpures-fixup.patch' && _patchmsg="Applied shared resource multimedia fixups patchset" &&  nonuser_patcher
 		elif ! git merge-base --is-ancestor 98d209752cee9abd8dc31dfe1f28811066b0b83f HEAD; then
